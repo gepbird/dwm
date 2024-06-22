@@ -42,7 +42,7 @@
               hash = "sha256-4iy2FtOdFDJGFIZ9rpYHtcYjXBOwP5YaFz5f8l/DIN0=";
             })
             # my unofficial patches
-            ./patches/dwm-rofi-6.4.diff
+            ./patches/dwm-rofi-6.5.diff
             ./patches/dwm-focuscursor-6.4.diff
             ./patches/dwm-changeborder-6.4.diff
           ];

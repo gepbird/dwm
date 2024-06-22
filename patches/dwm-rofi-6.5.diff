@@ -1,6 +1,6 @@
 From 6cabb2708f341872de25eae01c4487d40c636294 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Gutyina=20Gerg=C5=91?= <gutyina.gergo.2@gmail.com>
-Date: Fri, 21 Jun 2024 22:59:52 +0200
+Date: Fri, 22 Jun 2024 21:58:23 +0200
 Subject: [PATCH] Change dmenu to rofi
 
 ---
@@ -21,11 +21,12 @@ index 9efa774..4a540cf 100644
  static const char col_gray1[]       = "#222222";
  static const char col_gray2[]       = "#444444";
  static const char col_gray3[]       = "#bbbbbb";
-@@ -56,12 +55,12 @@ static const Layout layouts[] = {
+@@ -56,13 +55,12 @@ static const Layout layouts[] = {
  #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
  
  /* commands */
--static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 +static const char *roficmd[] = { "rofi", "-show", "run", NULL };
  static const char *termcmd[]  = { "st", NULL };
  
@@ -58,6 +59,19 @@ index ddc8321..af1a2d3 100644
  .BR st (1)
  .SH ISSUES
  Java applications which use the XToolkit/XAWT backend may draw grey windows
+diff --git a/dwm.c b/dwm.c
+index f1d86b2..19d31b4 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1649,8 +1649,6 @@ spawn(const Arg *arg)
+ {
+ 	struct sigaction sa;
+ 
+-	if (arg->v == dmenucmd)
+-		dmenumon[0] = '0' + selmon->num;
+ 	if (fork() == 0) {
+ 		if (dpy)
+ 			close(ConnectionNumber(dpy));
 -- 
 2.41.0
 
