@@ -48,25 +48,25 @@
           ];
           postPatch = o.postPatch + (with pkgs; with lib; ''
             substituteInPlace chbright.sh \
-              --replace '@hck@' '${getExe hck}' \
-              --replace '@dunstify@' '${getExe' dunst "dunstify"}' \
-              --replace '@light@' '${getExe light}'
+              --replace-fail '@hck@' '${getExe hck}' \
+              --replace-fail '@dunstify@' '${getExe' dunst "dunstify"}' \
+              --replace-fail '@light@' '${getExe light}'
             substituteInPlace chvol.sh \
-              --replace '@sed@' '${getExe gnused}' \
-              --replace '@rg@' '${getExe ripgrep}' \
-              --replace '@dunstify@' '${getExe' dunst "dunstify"}' \
-              --replace '@pactl@' '${getExe' pulseaudio "pactl"}'
+              --replace-fail '@sed@' '${getExe gnused}' \
+              --replace-fail '@rg@' '${getExe ripgrep}' \
+              --replace-fail '@dunstify@' '${getExe' dunst "dunstify"}' \
+              --replace-fail '@pactl@' '${getExe' pulseaudio "pactl"}'
             substituteInPlace config.h \
-              --replace '@zsh@' '${getExe zsh}' \
-              --replace '@clac@' '${getExe clac}' \
-              --replace '@lf@' '${getExe lf}' \
-              --replace '@chatgpt@' '${getExe chatgpt-cli}' \
-              --replace '@btm@' '${getExe bottom}' \
-              --replace '@xkill@' '${getExe xorg.xkill}' \
-              --replace '@rofi@' '${getExe rofi}' \
-              --replace '@flameshot@' '${getExe flameshot}' \
-              --replace '@gromit-mpx@' '${getExe gromit-mpx}' \
-              --replace '@xfce4-terminal@' '${getExe xfce.xfce4-terminal}'
+              --replace-fail '@zsh@' '${getExe zsh}' \
+              --replace-fail '@clac@' '${getExe clac}' \
+              --replace-fail '@lf@' '${getExe lf}' \
+              --replace-fail '@chatgpt@' '${getExe chatgpt-cli}' \
+              --replace-fail '@btm@' '${getExe bottom}' \
+              --replace-fail '@xkill@' '${getExe xorg.xkill}' \
+              --replace-fail '@rofi@' '${getExe rofi}' \
+              --replace-fail '@flameshot@' '${getExe flameshot}' \
+              --replace-fail '@gromit-mpx@' '${getExe gromit-mpx}' \
+              --replace-fail '@xfce4-terminal@' '${getExe xfce.xfce4-terminal}'
           '');
           buildInputs = o.buildInputs ++ (with pkgs; [
             wrapGAppsHook
