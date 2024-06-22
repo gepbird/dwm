@@ -13,8 +13,9 @@
         inherit (pkgs) fetchpatch;
       in
       {
-        packages.default = pkgs.dwm.overrideAttrs {
+        packages.default = pkgs.dwm.overrideAttrs (o: {
           src = ./.;
+          conf = ./config.h;
           patches = [
             # official patches by other people
             (fetchpatch {
@@ -45,7 +46,35 @@
             ./patches/dwm-focuscursor-6.4.diff
             ./patches/dwm-changeborder-6.4.diff
           ];
-        };
+          postPatch = o.postPatch + (with pkgs; with lib; ''
+            substituteInPlace chbright.sh \
+              --replace '@hck@' '${getExe hck}' \
+              --replace '@dunstify@' '${getExe' dunst "dunstify"}' \
+              --replace '@light@' '${getExe light}'
+            substituteInPlace chvol.sh \
+              --replace '@sed@' '${getExe gnused}' \
+              --replace '@rg@' '${getExe ripgrep}' \
+              --replace '@dunstify@' '${getExe' dunst "dunstify"}' \
+              --replace '@pactl@' '${getExe' pulseaudio "pactl"}'
+            substituteInPlace config.h \
+              --replace '@zsh@' '${getExe zsh}' \
+              --replace '@clac@' '${getExe clac}' \
+              --replace '@lf@' '${getExe lf}' \
+              --replace '@chatgpt@' '${getExe chatgpt-cli}' \
+              --replace '@btm@' '${getExe bottom}' \
+              --replace '@xkill@' '${getExe xorg.xkill}' \
+              --replace '@rofi@' '${getExe rofi}' \
+              --replace '@flameshot@' '${getExe flameshot}' \
+              --replace '@gromit-mpx@' '${getExe gromit-mpx}' \
+              --replace '@xfce4-terminal@' '${getExe xfce.xfce4-terminal}'
+          '');
+          buildInputs = o.buildInputs ++ (with pkgs; [
+            wrapGAppsHook
+          ]);
+          postInstall = ''
+            cp *.sh $out/bin
+          '';
+        });
       }
     );
 }
