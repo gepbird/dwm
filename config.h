@@ -43,7 +43,8 @@ static const Rule rules[] = {
    */
   /* class       instance    title        tags mask     isfloating   monitor */
   { "discord",   NULL,       NULL,        1 << 0,       0,           1  },
-  { "firefox",   NULL,       NULL,        1 << 1,       0,           1  },
+  { "Element",   NULL,       NULL,        1 << 1,       0,           1  },
+  { "firefox",   NULL,       NULL,        1 << 2,       0,           1  },
   { "flameshot", NULL,       NULL,        0,            1,           -1 },
   { NULL,        NULL,       "spterm",    SPTAG(0),     1,           -1 },
   { NULL,        NULL,       "spclac",    SPTAG(1),     1,           -1 },
