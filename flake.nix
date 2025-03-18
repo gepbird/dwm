@@ -30,6 +30,7 @@
             })
             ./patches/dwm-adjacenttag-6.2.diff
             ./patches/dwm-scratchpads-20200414-728d397b.diff
+            ./patches/dwm-attachbelow-6.2.diff
             # my official patches
             (fetchpatch {
               name = "activemonitor";
