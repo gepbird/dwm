@@ -13,7 +13,7 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
-        inherit (pkgs) fetchpatch;
+        inherit (pkgs) fetchpatch2;
       in
       {
         packages.default = pkgs.dwm.overrideAttrs (o: {
@@ -21,29 +21,29 @@
           conf = ./config.h;
           patches = [
             # official patches by other people
-            (fetchpatch {
+            (fetchpatch2 {
               name = "statusallmons";
               url = "https://dwm.suckless.org/patches/statusallmons/dwm-statusallmons-6.2.diff";
-              hash = "sha256-AdngAZTKzICfwAx66sOdWD3IdsoJN8UW8eXa/o+X5/4=";
+              hash = "sha256-rYuRi65ZzhuxLAPvIuxxB2KZmkl9Fyav+fwbclB89kQ=";
             })
-            (fetchpatch {
+            (fetchpatch2 {
               name = "noborder-floatingfix";
               url = "https://dwm.suckless.org/patches/noborder/dwm-noborderfloatingfix-6.2.diff";
-              hash = "sha256-CrKItgReKz3G0mEPYiqCHW3xHl6A3oZ0YiQ4oI9KXSw=";
+              hash = "sha256-AjKKP3DJ4AFwcqwaRqzryxkVZymrW/AtUK51ELhzbQ8=";
             })
             ./patches/dwm-adjacenttag-6.2.diff
             ./patches/dwm-scratchpads-20200414-728d397b.diff
             ./patches/dwm-attachbelow-6.2.diff
             # my official patches
-            (fetchpatch {
+            (fetchpatch2 {
               name = "activemonitor";
               url = "https://dwm.suckless.org/patches/activemonitor/dwm-activemonitor-20230825-e81f17d.diff";
-              hash = "sha256-MEF/vSN3saZlvL4b26mp/7XyKG3Lp0FD0vTYPULuQXA=";
+              hash = "sha256-j/s3tbDZe613Fprxprti+Q/Ym4g3ddoYhOFdHX+qH7o=";
             })
-            (fetchpatch {
+            (fetchpatch2 {
               name = "resizehere";
               url = "https://dwm.suckless.org/patches/resizehere/dwm-resizehere-20230824-e81f17d.diff";
-              hash = "sha256-4iy2FtOdFDJGFIZ9rpYHtcYjXBOwP5YaFz5f8l/DIN0=";
+              hash = "sha256-A+kMobZ4jD3xnEQgdeQ40SuWeimbDdNHpzLxQ/5+HAc=";
             })
             # my unofficial patches
             ./patches/dwm-rofi-6.5.diff
