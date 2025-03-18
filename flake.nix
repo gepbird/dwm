@@ -6,8 +6,11 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs: with inputs;
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    inputs:
+    with inputs;
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
         inherit (pkgs) fetchpatch;
@@ -47,31 +50,39 @@
             ./patches/dwm-focuscursor-6.4.diff
             ./patches/dwm-changeborder-6.4.diff
           ];
-          postPatch = o.postPatch + (with pkgs; with lib; ''
-            substituteInPlace chbright.sh \
-              --replace-fail '@hck@' '${getExe hck}' \
-              --replace-fail '@dunstify@' '${getExe' dunst "dunstify"}' \
-              --replace-fail '@light@' '${getExe light}'
-            substituteInPlace chvol.sh \
-              --replace-fail '@sed@' '${getExe gnused}' \
-              --replace-fail '@rg@' '${getExe ripgrep}' \
-              --replace-fail '@dunstify@' '${getExe' dunst "dunstify"}' \
-              --replace-fail '@pactl@' '${getExe' pulseaudio "pactl"}'
-            substituteInPlace config.h \
-              --replace-fail '@zsh@' '${getExe zsh}' \
-              --replace-fail '@clac@' '${getExe clac}' \
-              --replace-fail '@lf@' '${getExe lf}' \
-              --replace-fail '@chatgpt@' '${getExe chatgpt-cli}' \
-              --replace-fail '@btm@' '${getExe bottom}' \
-              --replace-fail '@xkill@' '${getExe xorg.xkill}' \
-              --replace-fail '@rofi@' '${getExe rofi}' \
-              --replace-fail '@flameshot@' '${getExe flameshot}' \
-              --replace-fail '@gromit-mpx@' '${getExe gromit-mpx}' \
-              --replace-fail '@xfce4-terminal@' '${getExe xfce.xfce4-terminal}'
-          '');
-          buildInputs = o.buildInputs ++ (with pkgs; [
-            wrapGAppsHook
-          ]);
+          postPatch =
+            o.postPatch
+            + (
+              with pkgs;
+              with lib;
+              ''
+                substituteInPlace chbright.sh \
+                  --replace-fail '@hck@' '${getExe hck}' \
+                  --replace-fail '@dunstify@' '${getExe' dunst "dunstify"}' \
+                  --replace-fail '@light@' '${getExe light}'
+                substituteInPlace chvol.sh \
+                  --replace-fail '@sed@' '${getExe gnused}' \
+                  --replace-fail '@rg@' '${getExe ripgrep}' \
+                  --replace-fail '@dunstify@' '${getExe' dunst "dunstify"}' \
+                  --replace-fail '@pactl@' '${getExe' pulseaudio "pactl"}'
+                substituteInPlace config.h \
+                  --replace-fail '@zsh@' '${getExe zsh}' \
+                  --replace-fail '@clac@' '${getExe clac}' \
+                  --replace-fail '@lf@' '${getExe lf}' \
+                  --replace-fail '@chatgpt@' '${getExe chatgpt-cli}' \
+                  --replace-fail '@btm@' '${getExe bottom}' \
+                  --replace-fail '@xkill@' '${getExe xorg.xkill}' \
+                  --replace-fail '@rofi@' '${getExe rofi}' \
+                  --replace-fail '@flameshot@' '${getExe flameshot}' \
+                  --replace-fail '@gromit-mpx@' '${getExe gromit-mpx}' \
+                  --replace-fail '@xfce4-terminal@' '${getExe xfce.xfce4-terminal}'
+              ''
+            );
+          buildInputs =
+            o.buildInputs
+            ++ (with pkgs; [
+              wrapGAppsHook
+            ]);
           postInstall = ''
             cp *.sh $out/bin
           '';
