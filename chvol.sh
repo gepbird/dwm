@@ -1,5 +1,5 @@
 #!/bin/sh
-pactl "$"
+pactl "$@"
 msgTag="volume"
 volume=$(pactl get-sink-volume 0 | rg '\d+%' -o | sed 's/%//;1q')
 muted=$(pactl get-sink-mute 0)
