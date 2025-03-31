@@ -72,7 +72,24 @@
               zsh
             ]);
           postInstall = ''
-            cp *.sh $out/bin
+            makeWrapper chbright.sh $out/bin/chbright.sh \
+              --prefix PATH : ${
+                with pkgs;
+                lib.makeBinPath [
+                  light
+                  dunst
+                  hck
+                ]
+              }
+            makeWrapper chvol.sh $out/bin/chvol.sh \
+              --prefix PATH : ${
+                with pkgs;
+                lib.makeBinPath [
+                  pulseaudio
+                  dunst
+                  ripgrep
+                ]
+              }
           '';
         });
       }
