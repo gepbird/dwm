@@ -56,15 +56,10 @@
               bottom
               chatgpt-cli
               clac
-              dunst
               flameshot
               gnused
               gromit-mpx
-              hck
               lf
-              light
-              pulseaudio
-              ripgrep
               rofi
               wrapGAppsHook
               xfce.xfce4-terminal
