@@ -72,7 +72,8 @@
               zsh
             ]);
           postInstall = ''
-            makeWrapper chbright.sh $out/bin/chbright.sh \
+            cp chbright.sh $out/bin/chbright.sh
+            wrapProgram $out/bin/chbright.sh \
               --prefix PATH : ${
                 with pkgs;
                 lib.makeBinPath [
@@ -81,7 +82,8 @@
                   hck
                 ]
               }
-            makeWrapper chvol.sh $out/bin/chvol.sh \
+            cp chvol.sh $out/bin/chvol.sh 
+            wrapProgram $out/bin/chvol.sh \
               --prefix PATH : ${
                 with pkgs;
                 lib.makeBinPath [
