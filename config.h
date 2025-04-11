@@ -24,6 +24,8 @@ typedef struct {
 } Sp;
 #define SPTERM(tag, cmd) \
   { tag, (char *[]) { "xfce4-terminal", "--geometry", "120x34", "-T", tag, "-e", cmd, NULL } },
+#define SPGUI(tag, cmd) \
+  { tag, (char *[]) { cmd, NULL } },
 static Sp scratchpads[] = {
   /* name          cmd  */
   SPTERM("spterm",     "zsh")
@@ -31,6 +33,7 @@ static Sp scratchpads[] = {
   SPTERM("splf",       "lf")
   SPTERM("spchatgpt",  "chatgpt")
   SPTERM("spbtm",      "btm")
+  SPGUI("spenteauth", "enteauth")
 };
 
 /* tagging */
@@ -52,6 +55,7 @@ static const Rule rules[] = {
   { NULL,        NULL,       "splf",      SPTAG(2),     1,           -1 },
   { NULL,        NULL,       "spchatgpt", SPTAG(3),     1,           -1 },
   { NULL,        NULL,       "spbtm",     SPTAG(4),     1,           -1 },
+  { "Io.ente.auth",NULL,     NULL,        SPTAG(5),     1,           -1 },
 };
 
 /* layout(s) */
@@ -81,6 +85,7 @@ static const Layout layouts[] = {
 #define BrightUp XF86XK_MonBrightnessUp
 #define XK_ő XK_odoubleacute
 #define XK_ú XK_uacute
+#define XK_ű XK_udoubleacute
 
 #define TAGKEYS(KEY,TAG) \
   { Sup,                          KEY,      view,           { .ui = 1 << TAG } }, \
@@ -149,6 +154,7 @@ static const Key keys[] = {
   { Sup,                          XK_o,       togglescratch,  { .ui = 2 } },
   { Sup,                          XK_ő,       togglescratch,  { .ui = 3 } },
   { Sup,                          XK_ú,       togglescratch,  { .ui = 4 } },
+  { Sup,                          XK_ű,       togglescratch,  { .ui = 5 } },
   { Sup,                          XK_0,       view,           { .ui = ~0 } },
   { Sup|Sft,                      XK_0,       tag,            { .ui = ~0 } },
   { 0,                            BrightUp,   spawn,          { .v = brightup } },

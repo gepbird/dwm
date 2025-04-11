@@ -56,6 +56,7 @@
               bottom
               chatgpt-cli
               clac
+              ente-auth
               flameshot
               gnused
               gromit-mpx
