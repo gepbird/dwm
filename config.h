@@ -44,18 +44,18 @@ static const Rule rules[] = {
    *  WM_CLASS(STRING) = instance, class
    *  WM_NAME(STRING) = title
    */
-  /* class       instance    title        tags mask     isfloating   monitor */
-  { "discord",   NULL,       NULL,        1 << 0,       0,           1  },
-  { "Element",   NULL,       NULL,        1 << 1,       0,           1  },
-  { "fractal",   NULL,       NULL,        1 << 1,       0,           1  },
-  { "firefox",   NULL,       NULL,        1 << 2,       0,           1  },
-  { "flameshot", NULL,       NULL,        0,            1,           -1 },
-  { NULL,        NULL,       "spterm",    SPTAG(0),     1,           -1 },
-  { NULL,        NULL,       "spclac",    SPTAG(1),     1,           -1 },
-  { NULL,        NULL,       "splf",      SPTAG(2),     1,           -1 },
-  { NULL,        NULL,       "spchatgpt", SPTAG(3),     1,           -1 },
-  { NULL,        NULL,       "spbtm",     SPTAG(4),     1,           -1 },
-  { "Io.ente.auth",NULL,     NULL,        SPTAG(5),     1,           -1 },
+  /* class          instance    title        tags mask     isfloating   monitor */
+  { "discord",      NULL,       NULL,        1 << 0,       0,           1  },
+  { "Element",      NULL,       NULL,        1 << 1,       0,           1  },
+  { "fractal",      NULL,       NULL,        1 << 1,       0,           1  },
+  { "firefox",      NULL,       NULL,        1 << 2,       0,           1  },
+  { "flameshot",    NULL,       NULL,        0,            1,           -1 },
+  { NULL,           NULL,       "spterm",    SPTAG(0),     1,           -1 },
+  { NULL,           NULL,       "spclac",    SPTAG(1),     1,           -1 },
+  { NULL,           NULL,       "splf",      SPTAG(2),     1,           -1 },
+  { NULL,           NULL,       "spchatgpt", SPTAG(3),     1,           -1 },
+  { NULL,           NULL,       "spbtm",     SPTAG(4),     1,           -1 },
+  { "Io.ente.auth", NULL,     NULL,        SPTAG(5),     1,           -1 },
 };
 
 /* layout(s) */
@@ -140,7 +140,7 @@ static const Key keys[] = {
   { Alt|Sft,                      XK_Tab,     viewprev,       { 0 } },
   { Sup,                          XK_w,       spawn,          { .v = xkill } },
   { Sup,                          XK_q,       killclient,     { 0 } },
-  { Sup|Sft,                      XK_q,       quit,           {0} },
+  { Sup|Sft,                      XK_q,       quit,           { 0 } },
   { Sup,                          XK_t,       setlayout,      { .v = &layouts[0] } },
   { Sup,                          XK_f,       setlayout,      { .v = &layouts[1] } },
   { Sup,                          XK_m,       setlayout,      { .v = &layouts[2] } },
