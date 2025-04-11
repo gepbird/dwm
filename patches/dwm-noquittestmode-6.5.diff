@@ -1,0 +1,16 @@
+diff --git a/dwm.c b/dwm.c
+index f1d86b2..82b899f 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1258,7 +1258,10 @@ propertynotify(XEvent *e)
+ void
+ quit(const Arg *arg)
+ {
+-	running = 0;
++	if (getenv("DWM_TEST") != NULL)
++		running = 0;
++	else
++		fprintf(stderr, "dwm: test mode, not quitting.\n");
+ }
+ 
+ Monitor *

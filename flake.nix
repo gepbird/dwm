@@ -49,6 +49,7 @@
             ./patches/dwm-rofi-6.5.diff
             ./patches/dwm-focuscursor-6.4.diff
             ./patches/dwm-changeborder-6.4.diff
+            ./patches/dwm-noquittestmode-6.5.diff
           ];
           buildInputs =
             o.buildInputs
