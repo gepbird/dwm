@@ -22,15 +22,15 @@ typedef struct {
   const char *name;
   const void *cmd;
 } Sp;
-#define SP(tag, cmd) \
+#define SPTERM(tag, cmd) \
   { tag, (char *[]) { "xfce4-terminal", "--geometry", "120x34", "-T", tag, "-e", cmd, NULL } },
 static Sp scratchpads[] = {
   /* name          cmd  */
-  SP("spterm",     "zsh")
-  SP("spclac",     "clac")
-  SP("splf",       "lf")
-  SP("spchatgpt",  "chatgpt")
-  SP("spbtm",      "btm")
+  SPTERM("spterm",     "zsh")
+  SPTERM("spclac",     "clac")
+  SPTERM("splf",       "lf")
+  SPTERM("spchatgpt",  "chatgpt")
+  SPTERM("spbtm",      "btm")
 };
 
 /* tagging */
