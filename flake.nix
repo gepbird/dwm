@@ -55,7 +55,6 @@
             o.buildInputs
             ++ (with pkgs; [
               bottom
-              chatgpt-cli
               clac
               ente-auth
               flameshot

@@ -31,7 +31,6 @@ static Sp scratchpads[] = {
   SPTERM("spterm",     "zsh")
   SPTERM("spclac",     "clac")
   SPTERM("splf",       "lf")
-  SPTERM("spchatgpt",  "chatgpt")
   SPTERM("spbtm",      "btm")
   SPGUI("spenteauth", "enteauth")
 };
@@ -53,7 +52,6 @@ static const Rule rules[] = {
   { NULL,           NULL,       "spterm",    SPTAG(0),     1,           -1 },
   { NULL,           NULL,       "spclac",    SPTAG(1),     1,           -1 },
   { NULL,           NULL,       "splf",      SPTAG(2),     1,           -1 },
-  { NULL,           NULL,       "spchatgpt", SPTAG(3),     1,           -1 },
   { NULL,           NULL,       "spbtm",     SPTAG(4),     1,           -1 },
   { "Io.ente.auth", NULL,     NULL,        SPTAG(5),     1,           -1 },
 };
