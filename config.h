@@ -52,8 +52,8 @@ static const Rule rules[] = {
   { NULL,           NULL,       "spterm",    SPTAG(0),     1,           -1 },
   { NULL,           NULL,       "spclac",    SPTAG(1),     1,           -1 },
   { NULL,           NULL,       "splf",      SPTAG(2),     1,           -1 },
-  { NULL,           NULL,       "spbtm",     SPTAG(4),     1,           -1 },
-  { "Io.ente.auth", NULL,     NULL,        SPTAG(5),     1,           -1 },
+  { NULL,           NULL,       "spbtm",     SPTAG(3),     1,           -1 },
+  { "Io.ente.auth", NULL,     NULL,        SPTAG(4),     1,           -1 },
 };
 
 /* layout(s) */
@@ -150,9 +150,8 @@ static const Key keys[] = {
   { Sup,                          XK_z,       togglescratch,  { .ui = 0 } },
   { Sup,                          XK_u,       togglescratch,  { .ui = 1 } },
   { Sup,                          XK_o,       togglescratch,  { .ui = 2 } },
-  { Sup,                          XK_ő,       togglescratch,  { .ui = 3 } },
-  { Sup,                          XK_ú,       togglescratch,  { .ui = 4 } },
-  { Sup,                          XK_ű,       togglescratch,  { .ui = 5 } },
+  { Sup,                          XK_ú,       togglescratch,  { .ui = 3 } },
+  { Sup,                          XK_ű,       togglescratch,  { .ui = 4 } },
   { Sup,                          XK_0,       view,           { .ui = ~0 } },
   { Sup|Sft,                      XK_0,       tag,            { .ui = ~0 } },
   { 0,                            BrightUp,   spawn,          { .v = brightup } },
