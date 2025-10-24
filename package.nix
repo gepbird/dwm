@@ -15,7 +15,7 @@
   pulseaudio,
   ripgrep,
   rofi,
-  wrapGAppsHook,
+  wrapGAppsHook3,
   xfce,
   xorg,
   zsh,
@@ -65,7 +65,7 @@ dwm.overrideAttrs (o: {
     gromit-mpx
     lf
     rofi
-    wrapGAppsHook
+    wrapGAppsHook3
     xfce.xfce4-terminal
     xorg.xkill
     zsh
