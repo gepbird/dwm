@@ -14,5 +14,8 @@
     in
     {
       packages.${system}.default = pkgs.callPackage ./package.nix { };
+      overlays.default = final: prev: {
+        dwm = prev.callPackage ./package.nix { dwm = prev.dwm; };
+      };
     };
 }
