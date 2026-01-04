@@ -16,7 +16,7 @@
   ripgrep,
   rofi,
   wrapGAppsHook3,
-  xfce,
+  xfce4-terminal,
   xorg,
   zsh,
 }:
@@ -66,7 +66,7 @@ dwm.overrideAttrs (o: {
     lf
     rofi
     wrapGAppsHook3
-    xfce.xfce4-terminal
+    xfce4-terminal
     xorg.xkill
     zsh
   ];
