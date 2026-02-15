@@ -17,7 +17,7 @@
   rofi,
   wrapGAppsHook3,
   xfce4-terminal,
-  xorg,
+  xkill,
   zsh,
 }:
 
@@ -67,7 +67,7 @@ dwm.overrideAttrs (o: {
     rofi
     wrapGAppsHook3
     xfce4-terminal
-    xorg.xkill
+    xkill
     zsh
   ];
   postInstall = ''
