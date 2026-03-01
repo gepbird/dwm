@@ -107,10 +107,10 @@ static const char* voldown[]          = { "chvol.sh", "set-sink-volume", "0", "-
 static const char* voldownlite[]      = { "chvol.sh", "set-sink-volume", "0", "-1%", NULL };
 static const char* volup[]            = { "chvol.sh", "set-sink-volume", "0", "+10%", NULL };
 static const char* voluplite[]        = { "chvol.sh", "set-sink-volume", "0", "+1%", NULL };
-static const char* brightdown[]       = { "chbright.sh", "0.7", NULL };
-static const char* brightdownlite[]   = { "chbright.sh", "0.9", NULL };
-static const char* brightup[]         = { "chbright.sh", "1.3", NULL };
-static const char* brightuplite[]     = { "chbright.sh", "1.1", NULL };
+static const char* brightdown[]       = { "chbright.sh", "10%-", NULL };
+static const char* brightdownlite[]   = { "chbright.sh", "2%-", NULL };
+static const char* brightup[]         = { "chbright.sh", "10%+", NULL };
+static const char* brightuplite[]     = { "chbright.sh", "2%+", NULL };
 
 static const Key keys[] = {
   /* modifier                     key         function        argument */

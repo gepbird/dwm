@@ -11,7 +11,7 @@
   hck,
   lf,
   lib,
-  light,
+  brightnessctl,
   pulseaudio,
   ripgrep,
   rofi,
@@ -75,7 +75,7 @@ dwm.overrideAttrs (o: {
     wrapProgram $out/bin/chbright.sh \
       --prefix PATH : ${
         lib.makeBinPath [
-          light
+          brightnessctl
           dunst
           hck
         ]

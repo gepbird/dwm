@@ -1,5 +1,7 @@
 #!/bin/sh
-msgTag="backlight"
-light -T "$@" # multiply brightness by argument
-percentage=$(light -G | hck -d'\.' -f1)
-dunstify -a "changeBacklight" -u low -i audio-volume-high -h string:x-dunst-stack-tag:$msgTag -h int:value:"$percentage" "Brightness: ${percentage}%"
+percentage=$(brightnessctl --machine-readable set "$@" | hck -d, -f4)
+dunstify \
+  -u low \
+  -h string:x-dunst-stack-tag:backlight \
+  -h int:value:"$percentage" \
+  "Brightness: ${percentage}"
