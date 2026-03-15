@@ -23,7 +23,7 @@ typedef struct {
   const void *cmd;
 } Sp;
 #define SPTERM(tag, cmd) \
-  { tag, (char *[]) { "xfce4-terminal", "--geometry", "120x34", "-T", tag, "-e", cmd, NULL } },
+  { tag, (char *[]) { "xfce4-terminal", "--geometry", "150x43", "-T", tag, "-e", cmd, NULL } },
 #define SPGUI(tag, cmd) \
   { tag, (char *[]) { cmd, NULL } },
 static Sp scratchpads[] = {
