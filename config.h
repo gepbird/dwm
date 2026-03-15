@@ -32,7 +32,8 @@ static Sp scratchpads[] = {
   SPTERM("spclac",     "clac")
   SPTERM("splf",       "lf")
   SPTERM("spbtm",      "btm")
-  SPGUI("spenteauth", "enteauth")
+  SPGUI("spenteauth",  "enteauth")
+  SPTERM("spnix",      "nix repl -f '<nixpkgs>'")
 };
 
 /* tagging */
@@ -53,7 +54,8 @@ static const Rule rules[] = {
   { NULL,           NULL,       "spclac",    SPTAG(1),     1,           -1 },
   { NULL,           NULL,       "splf",      SPTAG(2),     1,           -1 },
   { NULL,           NULL,       "spbtm",     SPTAG(3),     1,           -1 },
-  { "Io.ente.auth", NULL,     NULL,        SPTAG(4),     1,           -1 },
+  { "Io.ente.auth", NULL,       NULL,        SPTAG(4),     1,           -1 },
+  { NULL,           NULL,       "spnix",     SPTAG(5),     1,           -1 },
 };
 
 /* layout(s) */
@@ -152,6 +154,7 @@ static const Key keys[] = {
   { Sup,                          XK_o,       togglescratch,  { .ui = 2 } },
   { Sup,                          XK_ú,       togglescratch,  { .ui = 3 } },
   { Sup,                          XK_ű,       togglescratch,  { .ui = 4 } },
+  { Sup,                          XK_n,       togglescratch,  { .ui = 5 } },
   { Sup,                          XK_0,       view,           { .ui = ~0 } },
   { Sup|Sft,                      XK_0,       tag,            { .ui = ~0 } },
   { 0,                            BrightUp,   spawn,          { .v = brightup } },
