@@ -145,6 +145,7 @@ static const Key keys[] = {
   { Sup,                          XK_f,       setlayout,      { .v = &layouts[1] } },
   { Sup,                          XK_m,       setlayout,      { .v = &layouts[2] } },
   { Sup,                          XK_g,       togglefloating, { 0 } },
+  { Sup|Sft,                      XK_g,       toggleforceresize, { 0 } },
   { Sup|Sft,                      XK_k,       focusmon,       { .i = -1 } },
   { Sup|Sft,                      XK_j,       focusmon,       { .i = +1 } },
   { Sup|Sft,                      XK_h,       tagmon,         { .i = -1 } },

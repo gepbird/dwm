@@ -55,6 +55,7 @@ dwm.overrideAttrs (o: {
     ./patches/dwm-focuscursor-6.4.diff
     ./patches/dwm-changeborder-6.4.diff
     ./patches/dwm-noquittestmode-6.5.diff
+    ./patches/dwm-forceresize-6.8.diff
   ];
   buildInputs = o.buildInputs ++ [
     bottom

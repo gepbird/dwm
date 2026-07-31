@@ -1,0 +1,79 @@
+From 34a82670e9915005c8f59f4b57ac8ac7467e5887 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Gutyina=20Gerg=C5=91?= <gutyina.gergo.2@gmail.com>
+Date: Sat, 1 Aug 2026 02:03:24 +0200
+Subject: [PATCH] [PATCH] Allow resizing and tiling all clients
+
+---
+ config.def.h |  1 +
+ dwm.c        | 16 +++++++++++++---
+ 2 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 81c3fc0..fc88c96 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -80,6 +80,7 @@ static const Key keys[] = {
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
++	{ MODKEY|ShiftMask,             XK_g,      toggleforceresize, {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+ 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+ 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+diff --git a/dwm.c b/dwm.c
+index 53b393e..c4b79b6 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -91,7 +91,7 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, forceresize;
+ 	Client *next;
+ 	Client *snext;
+ 	Monitor *mon;
+@@ -210,6 +210,7 @@ static void tagmon(const Arg *arg);
+ static void tile(Monitor *m);
+ static void togglebar(const Arg *arg);
+ static void togglefloating(const Arg *arg);
++static void toggleforceresize(const Arg *arg);
+ static void togglescratch(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+@@ -342,7 +343,7 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)
+ 		*h = bh;
+ 	if (*w < bh)
+ 		*w = bh;
+-	if (resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange) {
++	if (!c->forceresize && (resizehints || c->isfloating || !c->mon->lt[c->mon->sellt]->arrange)) {
+ 		if (!c->hintsvalid)
+ 			updatesizehints(c);
+ 		/* see last two sentences in ICCCM 4.1.2.3 */
+@@ -1728,13 +1729,22 @@ togglefloating(const Arg *arg)
+ 		return;
+ 	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
+ 		return;
+-	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
++	selmon->sel->isfloating = !selmon->sel->isfloating || (selmon->sel->isfixed && !selmon->sel->forceresize);
+ 	if (selmon->sel->isfloating)
+ 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
+ 			selmon->sel->w, selmon->sel->h, 0);
+ 	arrange(selmon);
+ }
+ 
++void
++toggleforceresize(const Arg *arg)
++{
++	if (!selmon->sel)
++		return;
++	selmon->sel->forceresize = !selmon->sel->forceresize;
++	arrange(selmon);
++}
++
+ void
+ togglescratch(const Arg *arg)
+ {
+-- 
+2.55.0
+
