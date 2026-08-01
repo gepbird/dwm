@@ -28,8 +28,8 @@ dwm.overrideAttrs (o: {
     # official patches by other people
     (fetchpatch2 {
       name = "statusallmons";
-      url = "https://dwm.suckless.org/patches/statusallmons/dwm-statusallmons-6.2.diff";
-      hash = "sha256-rYuRi65ZzhuxLAPvIuxxB2KZmkl9Fyav+fwbclB89kQ=";
+      url = "https://dwm.suckless.org/patches/statusallmons/dwm-statusallmons-6.5.diff";
+      hash = "sha256-nCGaqlERVu7tZZQztQNSF1i4fa0JKyCWzsGvFHbFJM0=";
     })
     (fetchpatch2 {
       name = "noborder-floatingfix";
