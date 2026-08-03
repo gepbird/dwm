@@ -72,7 +72,7 @@ dwm.overrideAttrs (o: {
     zsh
   ];
   postInstall = ''
-    cp chbright.sh $out/bin/chbright.sh
+    cp ${./chbright.sh} $out/bin/chbright.sh
     wrapProgram $out/bin/chbright.sh \
       --prefix PATH : ${
         lib.makeBinPath [
@@ -81,7 +81,7 @@ dwm.overrideAttrs (o: {
           hck
         ]
       }
-    cp chvol.sh $out/bin/chvol.sh 
+    cp ${./chvol.sh} $out/bin/chvol.sh 
     wrapProgram $out/bin/chvol.sh \
       --prefix PATH : ${
         lib.makeBinPath [
