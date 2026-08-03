@@ -21,8 +21,7 @@
   zsh,
 }:
 
-dwm.overrideAttrs (o: {
-  src = ./.;
+(dwm.override {
   conf = ./config.h;
   patches = [
     # official patches by other people
@@ -57,7 +56,7 @@ dwm.overrideAttrs (o: {
     ./patches/dwm-noquittestmode-6.5.diff
     ./patches/dwm-forceresize-6.8.diff
   ];
-  buildInputs = o.buildInputs ++ [
+  extraLibs = [
     bottom
     clac
     ente-auth
@@ -71,24 +70,27 @@ dwm.overrideAttrs (o: {
     xkill
     zsh
   ];
-  postInstall = ''
-    cp ${./chbright.sh} $out/bin/chbright.sh
-    wrapProgram $out/bin/chbright.sh \
-      --prefix PATH : ${
-        lib.makeBinPath [
-          brightnessctl
-          dunst
-          hck
-        ]
-      }
-    cp ${./chvol.sh} $out/bin/chvol.sh 
-    wrapProgram $out/bin/chvol.sh \
-      --prefix PATH : ${
-        lib.makeBinPath [
-          pulseaudio
-          dunst
-          ripgrep
-        ]
-      }
-  '';
-})
+}).overrideAttrs
+  (o: {
+    src = ./.;
+    postInstall = ''
+      cp ${./chbright.sh} $out/bin/chbright.sh
+      wrapProgram $out/bin/chbright.sh \
+        --prefix PATH : ${
+          lib.makeBinPath [
+            brightnessctl
+            dunst
+            hck
+          ]
+        }
+      cp ${./chvol.sh} $out/bin/chvol.sh 
+      wrapProgram $out/bin/chvol.sh \
+        --prefix PATH : ${
+          lib.makeBinPath [
+            pulseaudio
+            dunst
+            ripgrep
+          ]
+        }
+    '';
+  })
