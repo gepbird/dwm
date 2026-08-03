@@ -72,7 +72,6 @@
   ];
 }).overrideAttrs
   (o: {
-    src = ./.;
     postInstall = ''
       cp ${./chbright.sh} $out/bin/chbright.sh
       wrapProgram $out/bin/chbright.sh \
