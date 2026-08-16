@@ -12,8 +12,8 @@
   lf,
   lib,
   brightnessctl,
-  pulseaudio,
-  ripgrep,
+  gawk,
+  wireplumber,
   rofi,
   wrapGAppsHook3,
   xfce4-terminal,
@@ -86,9 +86,9 @@
       wrapProgram $out/bin/chvol.sh \
         --prefix PATH : ${
           lib.makeBinPath [
-            pulseaudio
+            wireplumber
             dunst
-            ripgrep
+            gawk
           ]
         }
     '';
