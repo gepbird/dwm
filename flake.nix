@@ -20,5 +20,12 @@
       overlays.default = final: prev: {
         dwm-gep = prev.callPackage ./package.nix { dwm = prev.dwm; };
       };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          xorg-server
+          inotify-tools
+        ];
+      };
     };
 }

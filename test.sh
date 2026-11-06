@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p xorgserver inotify-tools
+#!/usr/bin/env bash
 export DWM_TEST=1
 exec Xephyr -resizeable -screen 1920x1080 :1 &
 while true; do
