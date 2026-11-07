@@ -8,7 +8,7 @@
   flameshot,
   gnused,
   gromit-mpx,
-  hck,
+  coreutils,
   lf,
   lib,
   brightnessctl,
@@ -79,7 +79,7 @@
           lib.makeBinPath [
             brightnessctl
             dunst
-            hck
+            coreutils
           ]
         }
       cp ${./chvol.sh} $out/bin/chvol.sh 

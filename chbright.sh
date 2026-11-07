@@ -1,5 +1,5 @@
 #!/bin/sh
-percentage=$(brightnessctl --machine-readable set "$@" | hck -d, -f4)
+percentage=$(brightnessctl --machine-readable set "$@" | cut -d, -f4)
 dunstify \
   -u low \
   -h string:x-dunst-stack-tag:backlight \
