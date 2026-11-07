@@ -1,0 +1,60 @@
+diff --git a/config.def.h b/config.def.h
+index 81c3fc0..f0732b5 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -63,3 +60,5 @@ static const Layout layouts[] = {
++/* XF86Ungrab breaks active grabs (needs the grab:break_actions XKB option) */
++static const char *ungrab[]  = { "xdotool", "key", "XF86Ungrab", NULL };
+ 
+ static const Key keys[] = {
+ 	/* modifier                     key        function        argument */
+@@ -76,2 +76,4 @@ static const Key keys[] = {
+ 	{ MODKEY,                       XK_Tab,    view,           {0} },
++	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = ungrab } },
++	{ MODKEY|ShiftMask,             XK_m,      showcursor,     {0} },
+ 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+diff --git a/dwm.c b/dwm.c
+index 53b393e..95c3b8c 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -203,6 +203,7 @@ static void setlayout(const Arg *arg);
+ static void setmfact(const Arg *arg);
+ static void setup(void);
+ static void seturgent(Client *c, int urg);
++static void showcursor(const Arg *arg);
+ static void showhide(Client *c);
+ static void spawn(const Arg *arg);
+ static void tag(const Arg *arg);
+@@ -1626,6 +1627,32 @@ seturgent(Client *c, int urg)
+ 	XFree(wmh);
+ }
+ 
++/* Give the mouse cursor back when a stopped or crashed client (usually a
++ * game) left a blank cursor defined on its window: reset the root cursor and
++ * undefine the cursor on the top-level window of the focused client and of
++ * the client under the pointer (they differ e.g. after a keyboard focus
++ * change), so they inherit dwm's normal root cursor again. Cursors defined on
++ * child windows and XFixesHideCursor are not undone. Cannot break an active
++ * pointer grab of another client, see the XF86Ungrab keybind in config.h for
++ * that. A running client that keeps hiding the cursor will just hide it
++ * again. */
++void
++showcursor(const Arg *arg)
++{
++	Client *c;
++	Window r, child;
++	int x, y;
++	unsigned int mask;
++
++	XDefineCursor(dpy, root, cursor[CurNormal]->cursor);
++	if (selmon->sel)
++		XUndefineCursor(dpy, selmon->sel->win);
++	if (XQueryPointer(dpy, root, &r, &child, &x, &y, &x, &y, &mask)
++	&& (c = wintoclient(child)) && c != selmon->sel)
++		XUndefineCursor(dpy, c->win);
++	XSync(dpy, False);
++}
++
+ void
+ showhide(Client *c)
+ {

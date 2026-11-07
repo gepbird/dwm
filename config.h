@@ -113,6 +113,8 @@ static const char* brightdown[]       = { "chbright.sh", "10%-", NULL };
 static const char* brightdownlite[]   = { "chbright.sh", "2%-", NULL };
 static const char* brightup[]         = { "chbright.sh", "10%+", NULL };
 static const char* brightuplite[]     = { "chbright.sh", "2%+", NULL };
+/* XF86Ungrab breaks active grabs (needs the grab:break_actions XKB option) */
+static const char *ungrab[]  = { "xdotool", "key", "XF86Ungrab", NULL };
 
 static const Key keys[] = {
   /* modifier                     key         function        argument */
@@ -139,6 +141,8 @@ static const Key keys[] = {
   { Alt,                          XK_Tab,     viewnext,       { 0 } },
   { Alt|Sft,                      XK_Tab,     viewprev,       { 0 } },
   { Sup,                          XK_w,       spawn,          { .v = xkill } },
+  { Sup|Sft,                      XK_m,       spawn,          { .v = ungrab } },
+  { Sup|Sft,                      XK_m,       showcursor,     { 0 } },
   { Sup,                          XK_q,       killclient,     { 0 } },
   { Sup|Sft,                      XK_q,       quit,           { 0 } },
   { Sup,                          XK_t,       setlayout,      { .v = &layouts[0] } },

@@ -17,6 +17,7 @@
   rofi,
   wrapGAppsHook3,
   xfce4-terminal,
+  xdotool,
   xkill,
   zsh,
 }:
@@ -56,6 +57,7 @@
     ./patches/dwm-noquittestmode-6.5.diff
     ./patches/dwm-forceresize-6.8.diff
     ./patches/dwm-fn-scripts-6.8.diff
+    ./patches/dwm-showcursor-6.8.diff
   ];
   extraLibs = [
     bottom
@@ -68,6 +70,7 @@
     rofi
     wrapGAppsHook3
     xfce4-terminal
+    xdotool
     xkill
     zsh
   ];
