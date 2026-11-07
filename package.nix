@@ -12,8 +12,7 @@
   lf,
   lib,
   brightnessctl,
-  gawk,
-  wireplumber,
+  pamixer,
   rofi,
   wrapGAppsHook3,
   xfce4-terminal,
@@ -87,9 +86,8 @@
       wrapProgram $out/bin/chvol.sh \
         --prefix PATH : ${
           lib.makeBinPath [
-            wireplumber
+            pamixer
             dunst
-            gawk
           ]
         }
     '';
