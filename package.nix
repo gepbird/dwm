@@ -11,6 +11,7 @@
   coreutils,
   lf,
   lib,
+  makeWrapper,
   brightnessctl,
   pamixer,
   rofi,
@@ -72,8 +73,8 @@
 }).overrideAttrs
   (o: {
     #src = ./.;
+    nativeBuildInputs = o.nativeBuildInputs or [ ] ++ [ makeWrapper ];
     postInstall = o.postInstall or "" + ''
-      cp ${./chbright.sh} $out/bin/chbright.sh
       wrapProgram $out/bin/chbright.sh \
         --prefix PATH : ${
           lib.makeBinPath [
@@ -82,7 +83,6 @@
             coreutils
           ]
         }
-      cp ${./chvol.sh} $out/bin/chvol.sh 
       wrapProgram $out/bin/chvol.sh \
         --prefix PATH : ${
           lib.makeBinPath [
