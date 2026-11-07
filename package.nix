@@ -55,6 +55,7 @@
     ./patches/dwm-changeborder-6.4.diff
     ./patches/dwm-noquittestmode-6.5.diff
     ./patches/dwm-forceresize-6.8.diff
+    ./patches/dwm-fn-scripts-6.8.diff
   ];
   extraLibs = [
     bottom
